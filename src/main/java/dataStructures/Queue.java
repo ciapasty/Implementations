@@ -1,34 +1,37 @@
 package dataStructures;
 
+class FullQueueException extends RuntimeException {}
+class EmptyQueueException extends RuntimeException {}
+
 public class Queue<T> {
-    int capacity;
-    SinglyLinkedList<T> items;
+    private final int capacity;
+    private final SinglyLinkedList<T> items;
 
     Queue(int capacity) {
         this.capacity = capacity;
         this.items = new SinglyLinkedList<>();
     }
 
-    public void enqueue(T item) throws RuntimeException {
-        if (items.size() == capacity) {
-            throw new RuntimeException("Queue is full");
+    public void enqueue(T item) throws FullQueueException {
+        if (items.size() >= capacity) {
+            throw new FullQueueException();
         }
 
         items.add(item);
     }
 
-    public T dequeue() throws RuntimeException {
-        if (items.size() == 0) {
-            throw new RuntimeException("Queue is empty");
+    public T dequeue() throws EmptyQueueException {
+        if (items.size() <= 0) {
+            throw new EmptyQueueException();
         }
         T item = items.get(0);
         items.remove(item);
         return item;
     }
 
-    public T peek() throws RuntimeException {
-        if (items.size() == 0) {
-            throw new RuntimeException("Queue is empty");
+    public T peek() throws EmptyQueueException {
+        if (items.size() <= 0) {
+            throw new EmptyQueueException();
         }
         return items.get(0);
     }
