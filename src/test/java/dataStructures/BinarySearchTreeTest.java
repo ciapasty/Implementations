@@ -3,37 +3,28 @@ package dataStructures;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class BinarySearchTreeTest {
 
     private static BinarySearchTree<String> bt;
 
-    @BeforeAll
-    static void initAll() {
+    @BeforeEach
+    void init() {
         bt = new BinarySearchTree<String>();
+        bt.insert("d");
+        bt.insert("b");
+        bt.insert("e");
+        bt.insert("a");
+        bt.insert("c");
+        bt.insert("f");
     }
 
     @Test
-    public void insertAndFindValues() {
-
-        bt.insert("d");
-        assertEquals(bt.find("d"), "d");
-
-        bt.insert("b");
-        assertEquals(bt.find("b"), "b");
-
-        bt.insert("e");
-        assertEquals(bt.find("e"), "e");
-
-        bt.insert("a");
-        assertEquals(bt.find("a"), "a");
-
-        bt.insert("b");
-        assertEquals(bt.find("b"), "b");
-
-        bt.insert("f");
-        assertEquals(bt.find("f"), "f");
+    public void insertAndFindValue() {
+        bt.insert("g");
+        assertEquals(bt.find("g"), "g");
     }
 
     @Test
@@ -43,6 +34,6 @@ public class BinarySearchTreeTest {
 
     @Test
     public void max() {
-        assertEquals(bt.max(), "f");
+        assertEquals(bt.max(), "e");
     }
 }
